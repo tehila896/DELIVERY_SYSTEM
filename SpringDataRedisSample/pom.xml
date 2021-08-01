@@ -15,6 +15,8 @@
 	<description>Authorization Service</description>
 
 	<properties>
+	    <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -22,11 +24,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-
-
-		<dependency>
+		</dependency>		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -71,7 +69,17 @@
 			<version>2.9.9.3</version>
 		</dependency>
 
-
+<dependency>
+       <groupId>io.springfox</groupId>
+       <artifactId>springfox-swagger2</artifactId>
+       <version>2.6.1</version>
+   </dependency>
+ 
+   <dependency>
+       <groupId>io.springfox</groupId>
+       <artifactId>springfox-swagger-ui</artifactId>
+       <version>2.6.1</version>
+   </dependency>
 	</dependencies>
 
 	<build>
@@ -80,7 +88,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+           
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
 		</plugins>
+
 		<finalName>Authorization</finalName>
 	</build>
 

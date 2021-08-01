@@ -1,7 +1,7 @@
 package com.sample.service;
 
-import com.sample.dal.UserDao;
-import com.sample.dal.User;
+import com.sample.dal.Customer;
+import com.sample.dal.CustomerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +13,16 @@ import org.springframework.stereotype.Service;
 public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Autowired
-    UserDao userDao;
+    CustomerDao customerDao;
 
 
-    public Boolean saveUser(User user){
-        return userDao.saveUser(user) ;
+    public Boolean saveCustomer(Customer customer){
+        return customerDao.saveCustomer(customer) ;
     }
 
     @Override
-    public User findByName(String name) {
+    public Customer findById(Long id) {
 
-        return userDao.findByName(name);
+        return customerDao.findById(id);
     }
 }

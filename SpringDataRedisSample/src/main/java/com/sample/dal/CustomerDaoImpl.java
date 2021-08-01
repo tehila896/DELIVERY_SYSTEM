@@ -4,28 +4,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.util.Map;
 
-/**
- * Created by OmiD.HaghighatgoO on 8/21/2019.
- */
-
 @Repository
-public class UserDaoImpl implements UserDao {
+public class CustomerDaoImpl implements CustomerDao {
 
     @Autowired
-    UserRepository userRepository;
+    CustomerRepository customerRepository;
 
     @Autowired
     RedisTemplate redisTemplate;
 
     private static final String KEY = "user";
 
-    public Boolean saveUser(User user) {
+    public Boolean saveCustomer(Customer customer) {
         try {
-            Map userHash = new ObjectMapper().convertValue(user, Map.class);
-            redisTemplate.opsForHash().put(KEY, user.getName(), userHash);
+            Map userHash = new ObjectMapper().convertValue(customer, Map.class);
+            redisTemplate.opsForHash().put(KEY, customer.getId(), userHash);
             return true;
 
         } catch (Exception e) {
@@ -34,11 +29,10 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public User findByName(String name) {
+    public Customer findById(Long id) {
 
-        Map userMap = (Map) redisTemplate.opsForHash().get(KEY, name);
-        User user = new ObjectMapper().convertValue(userMap, User.class);
-        return user;
+        Map customerMap = (Map) redisTemplate.opsForHash().get(KEY, id);
+        Customer customer = new ObjectMapper().convertValue(customerMap, Customer.class);
+        return customer;
     }
-
 }
