@@ -1,9 +1,9 @@
-package com.sample.dal;
+package com.sample.dal.customer;
 
 public interface CustomerDao {
 
     public Boolean saveCustomer(Customer customer) ;
-    public Customer findById(Long id) ;
+    public Customer findCustomerById(Long id) ;
 
 
 }

@@ -1,13 +1,17 @@
 package com.sample.service;
 
-import com.sample.dal.Customer;
+import com.sample.dal.customer.Customer;
 
 public interface AuthorizationService {
 
 
     public Boolean saveCustomer(Customer customer);
 
-    public Customer findById(Long id);
+    public Customer findCustomerById(Long id);
+    
+    public Boolean savePackage(Customer customer);
+
+    public Customer findPackageById(Long id);
 
 
 }

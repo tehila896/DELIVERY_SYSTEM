@@ -1,13 +1,9 @@
 package com.sample.service;
 
-import com.sample.dal.Customer;
-import com.sample.dal.CustomerDao;
+import com.sample.dal.customer.Customer;
+import com.sample.dal.customer.CustomerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-/**
- * Created by OmiD.HaghighatgoO on 8/21/2019.
- */
 
 @Service
 public class AuthorizationServiceImpl implements AuthorizationService {
@@ -21,8 +17,20 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     }
 
     @Override
-    public Customer findById(Long id) {
+    public Customer findCustomerById(Long id) {
 
-        return customerDao.findById(id);
+        return customerDao.findCustomerById(id);
     }
+
+	@Override
+	public Boolean savePackage(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer findPackageById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,6 +1,7 @@
-package com.sample.dal;
+package com.sample.dal.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,12 +16,12 @@ public class CustomerDaoImpl implements CustomerDao {
     @Autowired
     RedisTemplate redisTemplate;
 
-    private static final String KEY = "user";
+    private static final String KEY = "customer";
 
     public Boolean saveCustomer(Customer customer) {
         try {
-            Map userHash = new ObjectMapper().convertValue(customer, Map.class);
-            redisTemplate.opsForHash().put(KEY, customer.getId(), userHash);
+            Map customerHash  = new ObjectMapper().convertValue(customer, Map.class);
+            redisTemplate.opsForHash().put(KEY, Long.toString(customer.getId()), customerHash);
             return true;
 
         } catch (Exception e) {
@@ -29,7 +30,7 @@ public class CustomerDaoImpl implements CustomerDao {
         }
     }
 
-    public Customer findById(Long id) {
+    public Customer findCustomerById(Long id) {
 
         Map customerMap = (Map) redisTemplate.opsForHash().get(KEY, id);
         Customer customer = new ObjectMapper().convertValue(customerMap, Customer.class);
