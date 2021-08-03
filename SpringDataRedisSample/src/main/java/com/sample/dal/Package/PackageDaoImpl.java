@@ -1,5 +1,6 @@
 package com.sample.dal.Package;
 
+import java.util.LinkedList;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -32,15 +33,23 @@ public class PackageDaoImpl implements PackageDao{
 	@Override
 	public Package findPackageById(Long id) {
 		 Map packageMap = (Map) redisTemplate.opsForHash().get(KEY, id);
-	        Package package_ = new ObjectMapper().convertValue(packageMap, Package.class);
-	        return package_;
+	     Package package_ = new ObjectMapper().convertValue(packageMap, Package.class);
+	     return package_;
 	}
-
 	@Override
 	public State findStatePackage(Long id) {
 		 Map packageMap = (Map) redisTemplate.opsForHash().get(KEY, id);
 	     Package package_ = new ObjectMapper().convertValue(packageMap, Package.class);
-	     return package_.getList_states().;
+	     return package_.getList_states().getLast();
 	}
 
+	@Override
+	public State updateStatePackage(Long id,State state) {
+		 Map packageMap = (Map) redisTemplate.opsForHash().get(KEY, id);
+	     Package package_ = new ObjectMapper().convertValue(packageMap, Package.class);
+	     LinkedList<State> list_state=package_.getList_states();
+         list_state.add(state);
+         package_.setList_states(list_state);
+	     return package_.getList_states().getLast();
+	}
 }
