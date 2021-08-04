@@ -9,7 +9,6 @@ import com.sample.dal.customer.Customer;
 
 public interface DeliveryMenDao {
 
-	public Boolean saveDeliveryMen(DeliveryMenDao deliveryMenDao) ;
-    public Customer findDeliveryMenById(Long id) ;
-    
-}
+	public Boolean saveDeliveryMen(DeliveryMen deliveryMen) ;
+    public DeliveryMen findDeliveryMenById(Long id) ;
+   }

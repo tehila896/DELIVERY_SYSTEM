@@ -29,7 +29,6 @@ public class PackageDaoImpl implements PackageDao{
 	            return false;
 	        }
 	}
-
 	@Override
 	public Package findPackageById(Long id) {
 		 Map packageMap = (Map) redisTemplate.opsForHash().get(KEY, id);
@@ -43,13 +42,4 @@ public class PackageDaoImpl implements PackageDao{
 	     return package_.getList_states().getLast();
 	}
 
-	@Override
-	public State updateStatePackage(Long id,State state) {
-		 Map packageMap = (Map) redisTemplate.opsForHash().get(KEY, id);
-	     Package package_ = new ObjectMapper().convertValue(packageMap, Package.class);
-	     LinkedList<State> list_state=package_.getList_states();
-         list_state.add(state);
-         package_.setList_states(list_state);
-	     return package_.getList_states().getLast();
-	}
 }

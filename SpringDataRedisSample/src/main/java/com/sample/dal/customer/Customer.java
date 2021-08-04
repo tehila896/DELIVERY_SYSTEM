@@ -1,9 +1,6 @@
 package com.sample.dal.customer;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +15,6 @@ public class Customer {
 	@JsonProperty
 	@Valid
 	@Id	
-	@UniqueElements
 	@NotNull(message = "identity can`t be null")
 	private Long id;
 	@Valid

@@ -18,8 +18,6 @@ public interface AuthorizationService {
  
     public State findStatePackage(Long id);
 
-    public Boolean updateStatePackage(Long id,State state) ;
-
     public Boolean saveDeliveryMen(DeliveryMen deliveryMen);
 
     public DeliveryMen findDeliveryMenById(Long id);

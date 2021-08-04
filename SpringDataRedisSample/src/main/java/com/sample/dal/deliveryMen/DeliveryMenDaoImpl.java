@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sample.dal.Package.State;
 import com.sample.dal.customer.Customer;
 
 
 @Repository
-public class DeliveryMenDaoImpl {
+public class DeliveryMenDaoImpl implements DeliveryMenDao{
 	@Autowired
     DeliveryMenRepository deliveryMenRepository;
 
@@ -18,7 +19,7 @@ public class DeliveryMenDaoImpl {
     RedisTemplate redisTemplate;
 
     private static final String KEY = "deliveryMen";
-
+    @Override
     public Boolean saveDeliveryMen(DeliveryMen deliveryMen) {
         try {
             Map customerHash  = new ObjectMapper().convertValue(deliveryMen, Map.class);
@@ -30,7 +31,7 @@ public class DeliveryMenDaoImpl {
             return false;
         }
     }
-
+    @Override
     public DeliveryMen findDeliveryMenById(Long id) {
         Map deliveryMenMap = (Map) redisTemplate.opsForHash().get(KEY, id);
         DeliveryMen deliveryMen = new ObjectMapper().convertValue(deliveryMenMap, DeliveryMen.class);

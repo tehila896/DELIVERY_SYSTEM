@@ -19,3 +19,4 @@ public class paymentEvent implements Serializable {
                 + " = $" + this.value.toString()
                 + " at " + this.datetime.toString();
     }
+}

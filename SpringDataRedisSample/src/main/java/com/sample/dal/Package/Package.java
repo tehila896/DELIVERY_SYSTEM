@@ -21,14 +21,32 @@ Point p_destninon;
 LocalDate date_orde;
 LinkedList<State> list_states=new LinkedList<State>();
 Boolean statosCompletedPackage;
-public Boolean getStatosCompletedPackagee() {
-	return statosCompletedPackage;
-}
-public void setStatosCompletedPackage_(Boolean statosCompletedPackage) {
-	this.statosCompletedPackage = statosCompletedPackage;
-}
-paymentEvent payment=new paymentEvent();
+paymentEvent payment;
 
+public Point getP_source() {
+	return p_source;
+}
+public void setP_source(Point p_source) {
+	this.p_source = p_source;
+}
+public Point getP_destninon() {
+	return p_destninon;
+}
+public void setP_destninon(Point p_destninon) {
+	this.p_destninon = p_destninon;
+}
+public LocalDate getDate_orde() {
+	return date_orde;
+}
+public void setDate_orde(LocalDate date_orde) {
+	this.date_orde = date_orde;
+}
+public paymentEvent getPayment() {
+	return payment;
+}
+public void setPayment(paymentEvent payment) {
+	this.payment = payment;
+}
 public Long getId() {
 	return id;
 }
