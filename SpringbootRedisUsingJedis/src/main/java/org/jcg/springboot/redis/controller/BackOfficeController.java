@@ -91,16 +91,15 @@ public class BackOfficeController {
 		}
 		// Get all packages group by customer id
 		// Url - http://localhost:10091/api/redis/backOffice/getall/package_group_by_customer_id
-		@GetMapping("/getall/package_group_by_customer_id")
-		public Map<Object, java.util.List<Object>> findAll_packages_group_by_customer_id() {
-			LOG.info("Fetching all DeliveryMen from the redis.");
-			final Map<String, Package> packageMenMap = servicePackage.findAll();
-			ArrayList<Package> list_package=new ArrayList<>();
-
-			Map<Object, java.util.List<Object>> result = list_package.stream()
-				    .collect(Collectors.groupingBy(map -> map.getId().toString(),
-				                                   Collectors.mapping(map -> map,
-				                                                      Collectors.toList())));
-			return result;
-				}
+		//@GetMapping("/getall/package_group_by_customer_id")
+		//public Map<Object, java.util.List<Object>> findAll_packages_group_by_customer_id() {
+		//	LOG.info("Fetching all DeliveryMen from the redis.");
+		//	final Map<String, Package> packageMenMap = servicePackage.findAll();
+		//	ArrayList<Package> list_package=new ArrayList<>();
+		//	Map<Object, java.util.List<Object>> result = list_package.stream()
+		//		    .collect(Collectors.groupingBy(map -> map.getId().toString(),
+		//		                                   Collectors.mapping(map -> map,
+		//		                                                      Collectors.toList())));
+		//	return result;
+		//		}
 }
