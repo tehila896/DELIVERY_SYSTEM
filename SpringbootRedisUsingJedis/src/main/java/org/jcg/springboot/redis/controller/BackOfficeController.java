@@ -47,21 +47,6 @@ public class BackOfficeController {
 			return ResponseEntity.ok("deliveryMen id not found!!!");
 		 }
 	   } 
-
-		// Delete deliveryMen_ by id.
-		// Url - http://localhost:10091/api/redis/deliveryMen_/delete_deliveryMen/<deliveryMen_id>	
-		 @DeleteMapping("/delete_deliveryMenpackage/{id}")
-		 public ResponseEntity<String> delpac(@PathVariable("id") final String id) {
-			try {
-				Package deliveryMen=servicePackage.findById(id);
-				servicePackage.delete(deliveryMen.getId());
-				LOG.info("Deleting deliveryMen with id= " + id);
-				return ResponseEntity.ok("deliveryMen is deleted!!!");
-			 }
-			 catch (Exception e) {
-				return ResponseEntity.ok("deliveryMen id not found!!!");
-			 }
-		   } 
 	    // Get all customers.
 		// Url - http://localhost:10091/api/redis/backOffice/getall/customer
 		@GetMapping("/getall/customer")
