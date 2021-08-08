@@ -1,12 +1,13 @@
 # redis_restApi
 
-mvn clean install
 
 exec redis server
 
 exec redis client
 
 exec kafka
+
+mvn clean install
 
 java -jar target/xxxx.jar
 
