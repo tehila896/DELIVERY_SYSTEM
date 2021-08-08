@@ -9,6 +9,6 @@ exec kafka
 
 mvn clean install
 
-java -jar target/xxxx.jar
+java -jar target/SpringbootRedisUsingJedis.jar
 
 visit http://localhost:10091/swagger-ui.html
