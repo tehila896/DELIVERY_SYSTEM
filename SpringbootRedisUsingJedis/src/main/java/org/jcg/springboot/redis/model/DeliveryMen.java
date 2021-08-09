@@ -18,6 +18,19 @@ public class DeliveryMen implements Serializable{
 	String id;
 	@Valid
 	@JsonProperty
+	@NotNull(message = "firstName can`t be null")
+	@Pattern(regexp="^[a-zA-Z ]+$", message = "firstName must be a string")
+	String firstName;
+	@Valid
+	@JsonProperty
+	@NotNull(message = "lastName can`t be null")
+	@Pattern(regexp="^[a-zA-Z ]+$", message = "lastName must be a string")
+    String lastName;
+	@Valid
+	@JsonProperty
+	boolean statosCurrentlyWorking;
+	@Valid
+	@JsonProperty
 	@NotNull(message = "communication_way can`t be null")
 	@Pattern(regexp="^[a-zA-Z ]+$", message = "communication_way must be a string")
 	String communication_way;
@@ -29,15 +42,30 @@ public class DeliveryMen implements Serializable{
 	@Valid
 	@JsonProperty
 	Point position;
-	@Valid
-	@JsonProperty
-	
-	boolean statosCurrentlyWorking;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public Point getPosition() {
+		return position;
+	}
+	public void setPosition(Point position) {
+		this.position = position;
 	}
 	public String getCommunication_way() {
 		return communication_way;
@@ -51,13 +79,6 @@ public class DeliveryMen implements Serializable{
 	public void setGetSalary_way(String getSalary_way) {
 		this.getSalary_way = getSalary_way;
 	}
-	public Point getPosition() {
-		return position;
-	}
-	public void setPosition(Point position) {
-		this.position = position;
-	}
-	
 	public boolean isStatosCurrentlyWorking() {
 		return statosCurrentlyWorking;
 	}

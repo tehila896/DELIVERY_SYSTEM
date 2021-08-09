@@ -89,7 +89,7 @@ public class BackOfficeController {
 			// Todo - If developers like they can sort the map (optional).
 			return packageMenMap;
 		}
-		// Get all packages group by customer id
+// Get all packages group by customer id
 		// Url - http://localhost:10091/api/redis/backOffice/getall/package_group_by_customer_id
 		//@GetMapping("/getall/package_group_by_customer_id")
 		//public Map<Object, java.util.List<Object>> findAll_packages_group_by_customer_id() {
@@ -103,6 +103,3 @@ public class BackOfficeController {
 		//	return result;
 		//		}
 }
-
-
-

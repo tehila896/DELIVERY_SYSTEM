@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import nonapi.io.github.classgraph.json.Id;
@@ -18,11 +20,10 @@ static final long serialVersionUID = 1L;
 String id;
 @JsonProperty
 @Valid
-@Id	
+@NotNull(message = "customer_id can`t be null")
 String customer_id;
 @JsonProperty
 @Valid
-@Id	
 String delivery_id;
 @JsonProperty
 @Valid

@@ -1,5 +1,6 @@
 package org.jcg.springboot.redis.controller;
 
+import java.awt.Point;
 import java.util.Map;
 import javax.validation.Valid;
 import org.jcg.springboot.redis.model.Package;
@@ -73,6 +74,15 @@ public class CustomerController {
 	// Url - http://localhost:10091/api/redis/order_package
 	@PostMapping("/order_package")
 	public ResponseEntity<String> orderPackage(@Valid @RequestBody Package deliveryPackage) {
+		try {				
+			Customer temp=serviceCustomer.findById(deliveryPackage.getCustomer_id()); 
+			if(temp.getId()==null)
+           	  return null;
+	        }
+	        catch(Exception ex)
+	        {
+        	return ResponseEntity.ok("you have a mistake, The customer id is not in the database"); 	
+	        }
 		try {
 			Package temp = servicePackage.findById(deliveryPackage.getId());
 			if (temp.getId() == null)
@@ -90,6 +100,14 @@ public class CustomerController {
 		return ResponseEntity.ok("This Package id is already in the database");
 
 	}
+
+	// Get package by id.
+		// Url - http://localhost:10091/api/redis/customer/get/<package_id>
+		@GetMapping("/get/PackageById/{package_id}")
+		public ResponseEntity<Package> findPackageById(@PathVariable("package_id") final String package_id) {
+			LOG.info("Fetching package with id= " + package_id);
+			return ResponseEntity.ok(servicePackage.findById(package_id));
+		}
 
 	// check State
 	// Url - http://localhost:10091/api/redis/customer/checkState/<package_id>

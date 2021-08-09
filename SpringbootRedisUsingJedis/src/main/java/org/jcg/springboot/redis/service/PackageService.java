@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PackageService implements PackageRepo{
-	private final String PACKAGE_CACHE = "PACKAGE";
+	private final String PACKAGE_CACHE = "PACKAGES";
 
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;

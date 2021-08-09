@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DeliveryMenService implements DeliveryMenRepo{
-	private final String DELIVERYMEN_CACHE = "DELIVERYMEN";
+	private final String DELIVERYMEN_CACHE = "DELIVERYMENS";
 	
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;

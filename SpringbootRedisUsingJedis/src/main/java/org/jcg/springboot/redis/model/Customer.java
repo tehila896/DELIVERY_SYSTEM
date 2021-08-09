@@ -24,7 +24,7 @@ public class Customer implements Serializable {
 	String firstName;
 	@Valid
 	@JsonProperty
-	@NotNull(message = "firstName can`t be null")
+	@NotNull(message = "lastName can`t be null")
 	@Pattern(regexp="^[a-zA-Z ]+$", message = "lastName must be a string")
     String lastName;
 	@Valid
@@ -49,6 +49,7 @@ public class Customer implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
 	public String getEmail() {
 		return email;
 	}

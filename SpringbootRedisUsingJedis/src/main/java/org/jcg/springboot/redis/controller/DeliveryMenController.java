@@ -44,13 +44,13 @@ public class DeliveryMenController {
         {
         	    Boolean result =serviceDeliveryMen.save(deliveryMen);;
       	        if (result) {
-      	        	LOG.info("Saving the new deliveryMen to the redis.");
+      	        	LOG.info("Saving the new deliveryMen to the redis");
       	            return ResponseEntity.ok("A new deliveryMen is saved!!!");
       	        } 
       	        else 
       	            return ResponseEntity.ok("An error occured!!!");
         }
-		return ResponseEntity.ok("The deliveryMen is already in the database,you can update him!!!"); 	
+		return ResponseEntity.ok("The deliveryMen id is already in the database,you can update him!!!"); 	
 	}
 	
 	// Update a new deliveryMen.
@@ -65,56 +65,88 @@ public class DeliveryMenController {
     }
 	
 	// Update deliveryMen position.
-	// Url - http://localhost:10091/api/redis/updadate_Delverymen_Position
-	@PutMapping("/updadate_Delverymen_Position")
-	public ResponseEntity<String> updadate_Delverymen_Position(@Valid @RequestBody String id,@Valid @RequestBody Point position) {
-    DeliveryMen deliveryMen_ = serviceDeliveryMen.findById(id);
-    deliveryMen_.setPosition(position);
-    Boolean result =serviceDeliveryMen.save(deliveryMen_);
-    if (result) 
-        return ResponseEntity.ok("postion is updated!!!");
-    else 
-        return ResponseEntity.ok("An error occured!!!");
+	// Url - http://localhost:10091/api/redis/updadate_Delverymen_Position/position_Y/{position_Y}/position_X/{position_X}/id/{id}
+	@PutMapping("/updadate_Delverymen_Position/position_Y/{position_Y}/position_X/{position_X}/id/{id}")
+	public ResponseEntity<String> updadate_Delverymen_Position( @PathVariable("id") String id, @PathVariable("position_X") double position_X, @PathVariable("position_Y") double position_Y)
+	{
+		try {				
+			DeliveryMen temp=serviceDeliveryMen.findById(id); 
+			if(temp.getId()==null)
+           	  return null;
+			temp.setPosition(new Point((int) position_X,(int) position_Y));
+    	    Boolean result =serviceDeliveryMen.save(temp);
+    	    if (result) 
+    	        return ResponseEntity.ok("postion is updated!!!");
+    	    else
+    	        return ResponseEntity.ok("An error occured!!!");
+	        
+	        }
+	        catch(Exception ex)
+	        {
+        	return ResponseEntity.ok("you have a mistake, The deliveryMen id is not in the database"); 	
+	        }
     }
 	
 	// Update deliveryMen statos.
 	// Url - http://localhost:10091/api/redis/update_Statos_Package
-	@PutMapping("/update_Statos_Package")
-	public ResponseEntity<String> update_Statos_Package(@Valid @RequestBody String id,@Valid @RequestBody Boolean statos) {
-	Package package_ = servicePackage.findById(id);
-	package_.setStatosCompletedPackage(statos);
-	Boolean result =servicePackage.save(package_);
-	if (result) 
-	        return ResponseEntity.ok("statos is updated!!!");
-	else 
-	        return ResponseEntity.ok("An error occured!!!");
+	@PutMapping("/updadate_Delverymen_Position/statos/{statos}/id/{id}")
+	public ResponseEntity<String> update_Statos_Package(@Valid @PathVariable("id") String id,@Valid @PathVariable("statos") Boolean statos) {
+		try {				
+			Package temp = servicePackage.findById(id);
+			if(temp.getId()==null)
+           	  return null;
+			temp.setStatosCompletedPackage(statos);
+			Boolean result =servicePackage.save(temp);
+			if (result) 
+			        return ResponseEntity.ok("statos is updated!!!");
+			else 
+			        return ResponseEntity.ok("An error occured!!!");
+	        
+	        }
+	        catch(Exception ex)
+	        {
+        	return ResponseEntity.ok("you have a mistake, The package id is not in the database"); 	
+	        }
 	}
-	
 	// Update deliveryMen state.
-	// Url - http://localhost:10091/api/redis/update_State
-	@PutMapping("/update_State_Package")
-	public ResponseEntity<String> update_State_Package(@Valid @RequestBody String id,@Valid @RequestBody State state) {
-	Package package_ = servicePackage.findById(id);
-	LinkedList<State> list_states=package_.getList_states();
-	list_states.add(state);
-	package_.setList_states(list_states);
-	Boolean result =servicePackage.save(package_);
-	if (result) 
-		return ResponseEntity.ok("state is updated!!!");
-	else 
-		return ResponseEntity.ok("An error occured!!!");
-		}	
+	// Url - http://localhost:10091/api/redis/update_State/state/{state}/id/{id}
+	@PutMapping("/update_State_Package/id/{id}")
+	public ResponseEntity<String> update_State_Package(@Valid @PathVariable("id") String id,@Valid @RequestBody State state) {
+		try {				
+			Package temp = servicePackage.findById(id);
+			LinkedList<State> list_states=temp.getList_states();
+			list_states.add(state);
+			temp.setList_states(list_states);
+			Boolean result =servicePackage.save(temp);
+			if (result) 
+				return ResponseEntity.ok("state is updated!!!");
+			else 
+				return ResponseEntity.ok("An error occured!!!");
+		     }
+	        catch(Exception ex)
+	        {
+        	return ResponseEntity.ok("you have a mistake, The package id is not in the database"); 	
+	        }
+	}
 	// Update deliveryMen state.
 	// Url - http://localhost:10091/api/redis/update_DeliveryMen_statosCurrentlyWorking
-	@PutMapping("/update_DeliveryMen_statosCurrentlyWorking")
-	public ResponseEntity<String> update_DeliveryMen_statosCurrentlyWorking(@Valid @RequestBody String id,@Valid @RequestBody Boolean statosCurrentlyWorking) {
-    DeliveryMen deliveryMen_ = serviceDeliveryMen.findById(id);
-    deliveryMen_.setStatosCurrentlyWorking(statosCurrentlyWorking);
-    Boolean result =serviceDeliveryMen.save(deliveryMen_);
-    if (result) 
-    	return ResponseEntity.ok("statosCurrentlyWorking is updated!!!");
-    else 
-    	return ResponseEntity.ok("An error occured!!!");
-			}	
-
+	@PutMapping("/update_DeliveryMen_statosCurrentlyWorking/statosCurrentlyWorking/{statosCurrentlyWorking}/id/{id}")
+	public ResponseEntity<String> update_DeliveryMen_statosCurrentlyWorking(@Valid @PathVariable("id") String id,@Valid @PathVariable("statosCurrentlyWorking") Boolean statosCurrentlyWorking) {
+		try {				
+			DeliveryMen temp=serviceDeliveryMen.findById(id); 
+			if(temp.getId()==null)
+           	  return null;
+			  temp.setStatosCurrentlyWorking(statosCurrentlyWorking);  
+    	    Boolean result =serviceDeliveryMen.save(temp);
+    	    if (result) 
+    	        return ResponseEntity.ok("statos Currently Working is updated!!!");
+    	    else
+    	        return ResponseEntity.ok("An error occured!!!");
+	        
+	        }
+	        catch(Exception ex)
+	        {
+        	return ResponseEntity.ok("you have a mistake, The deliveryMen id is not in the database"); 	
+	        }
+		}
 }
