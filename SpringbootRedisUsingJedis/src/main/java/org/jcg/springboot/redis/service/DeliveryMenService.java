@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import org.jcg.springboot.redis.model.DeliveryMen;
 import org.jcg.springboot.redis.model.Package;
 import org.jcg.springboot.redis.model.PayMentEvent;
 import org.jcg.springboot.redis.model.PriceField;
@@ -13,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.jcg.springboot.redis.controller.DeliveryMenController;
 import org.jcg.springboot.redis.dao.DeliveryMenRepo;
-import org.jcg.springboot.redis.model.DeliveryMen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DeliveryMenService implements DeliveryMenRepo{
 	
-	private final String DELIVERYMEN_CACHE = "DELIVERYMENS";
+	private final String DELIVERYMEN_CACHE = "DELIVEARYMENSS";
 	
 	private static final Logger LOG = LoggerFactory.getLogger(DeliveryMenController.class);
 

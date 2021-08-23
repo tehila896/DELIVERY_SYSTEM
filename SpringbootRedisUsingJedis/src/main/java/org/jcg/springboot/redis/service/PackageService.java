@@ -1,9 +1,10 @@
 package org.jcg.springboot.redis.service;
 
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
-import org.jcg.springboot.redis.dao.PackageRepo;
 import org.jcg.springboot.redis.model.Package;
+import org.jcg.springboot.redis.dao.PackageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PackageService implements PackageRepo{
-	private final String PACKAGE_CACHE = "PACKAGES";
+	private final String PACKAGE_CACHE = "PAHCKAGES";
 
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;
@@ -22,7 +23,7 @@ public class PackageService implements PackageRepo{
 		hashOperations = redisTemplate.opsForHash();
 	}
 	@Override
-	public Boolean save(final Package package_) {
+	public Boolean save(Package package_) {
 		 try {
 			 hashOperations.put(PACKAGE_CACHE, package_.getId(), package_);
 	         return true;
