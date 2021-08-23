@@ -9,8 +9,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<!-- application name -->
-	<name>Springboot Redis tutorial Using Jedis</name>
-	<description>Springboot and Redis tutorial</description>
+	<name>DELIVERY_SYSTEM</name>
+	<description>DELIVERY_SYSTEM using Springboot and Redis tutorial</description>
 
 	<!-- spring boot starter parent dependency -->
 	<parent>
