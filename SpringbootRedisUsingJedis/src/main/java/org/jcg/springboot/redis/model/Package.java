@@ -1,12 +1,11 @@
 package org.jcg.springboot.redis.model;
 
-import java.awt.Point;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import nonapi.io.github.classgraph.json.Id;
@@ -27,13 +26,16 @@ String customer_id;
 String delivery_id;
 @JsonProperty
 @Valid
-Point p_source;
+PointD p_source;
 @JsonProperty
 @Valid
-Point p_destninon;
+PointD p_destninon;
 @JsonProperty
 @Valid
-Date date_orde;
+Date dateStartOrder;
+@JsonProperty
+@Valid
+Date dateEndOrder;
 @JsonProperty
 @Valid
 LinkedList<State> list_states=new LinkedList<State>();
@@ -43,6 +45,27 @@ Boolean statosCompletedPackage;
 @JsonProperty
 @Valid
 PayMentEvent payment;
+@Valid
+@JsonProperty
+CarryingCapacity carryingCapacity;
+@Valid
+@JsonProperty
+UnitOfDistance unitOfDistance;
+public UnitOfDistance getUnitOfDistance() {
+	return unitOfDistance;
+}
+public void setUnitOfDistance(UnitOfDistance unitOfDistance) {
+	this.unitOfDistance = unitOfDistance;
+}
+public CarryingCapacity getCarryingCapacity() {
+	return carryingCapacity;
+}
+public void setCarryingCapacity(CarryingCapacity carryingCapacity) {
+	this.carryingCapacity = carryingCapacity;
+}
+public String getDelivery_id() {
+	return delivery_id;
+}
 public String getId() {
 	return id;
 }
@@ -58,19 +81,16 @@ public void setDelivery_id(String delivery_id) {
 public String getCustomer_id() {
 	return customer_id;
 }
-public void setDate_orde(Date date_orde) {
-	this.date_orde = date_orde;
-}
-public Point getP_source() {
+public PointD getP_source() {
 	return p_source;
 }
-public void setP_source(Point p_source) {
+public void setP_source(PointD p_source) {
 	this.p_source = p_source;
 }
-public Point getP_destninon() {
+public PointD getP_destninon() {
 	return p_destninon;
 }
-public void setP_destninon(Point p_destninon) {
+public void setP_destninon(PointD p_destninon) {
 	this.p_destninon = p_destninon;
 }
 public LinkedList<State> getList_states() {
@@ -94,14 +114,17 @@ public void setPayment(PayMentEvent payment) {
 public static long getSerialversionuid() {
 	return serialVersionUID;
 }
-public Date getDate_orde() {
-	return date_orde;
-}
-@Override
-public String toString() {
-	return "Package [id=" + id + ", p_source=" + p_source + ", p_destninon=" + p_destninon + ", date_orde=" + date_orde
-			+ ", list_states=" + list_states + ", statosCompletedPackage=" + statosCompletedPackage + ", payment="
-			+ payment + "]";
-}
 
+public Date getDateStartOrder() {
+	return dateStartOrder;
+}
+public void setDateStartOrder(Date dateStartOrder) {
+	this.dateStartOrder = dateStartOrder;
+}
+public Date getDateEndOrder() {
+	return dateEndOrder;
+}
+public void setDateEndOrder(Date dateEndOrder) {
+	this.dateEndOrder = dateEndOrder;
+}
 }

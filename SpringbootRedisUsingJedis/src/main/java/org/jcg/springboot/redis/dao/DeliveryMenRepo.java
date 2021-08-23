@@ -20,4 +20,6 @@ public interface DeliveryMenRepo {
 	
 	// find the closest deliveryMend.
 	void calclute_Distance(Package deliveryPackage);
+	
+	double distance_Between_LatLong(double lat1, double lon1, double lat2, double lon2);
 }

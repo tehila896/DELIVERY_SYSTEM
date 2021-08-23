@@ -1,6 +1,6 @@
 package org.jcg.springboot.redis.model;
 
-import java.awt.Point;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -8,7 +8,7 @@ public class State implements Serializable{
 
 	String description;
 	LocalDateTime date;
-	Point position;
+	PointD position;
 	public String getDescription() {
 		return description;
 	}
@@ -21,10 +21,10 @@ public class State implements Serializable{
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
-	public Point getPosition() {
+	public PointD getPosition() {
 		return position;
 	}
-	public void setPosition(Point position) {
+	public void setPosition(PointD position) {
 		this.position = position;
 	}
 }

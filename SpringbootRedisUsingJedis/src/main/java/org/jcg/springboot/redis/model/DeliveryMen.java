@@ -1,6 +1,5 @@
 package org.jcg.springboot.redis.model;
 
-import java.awt.Point;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -41,7 +40,51 @@ public class DeliveryMen implements Serializable{
 	String getSalary_way;
 	@Valid
 	@JsonProperty
-	Point position;
+	PointD position;
+	@Valid
+	@JsonProperty
+	double speed;
+	@Valid
+	@JsonProperty
+	CarryingCapacity carryingCapacity;
+	@Valid
+	@JsonProperty
+	UnitOfDistance unitOfDistance;
+	@Valid
+	@JsonProperty
+	double price_carryingCapacity;
+	String lock;
+	public String getLock() {
+		return lock;
+	}
+	public void setLock(String lock) {
+		this.lock = lock;
+	}
+	public double getSpeed() {
+		return speed;
+	}
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public CarryingCapacity getCarryingCapacity() {
+		return carryingCapacity;
+	}
+	public void setCarryingCapacity(CarryingCapacity carryingCapacity) {
+		this.carryingCapacity = carryingCapacity;
+	}
+	public UnitOfDistance getUnitOfDistance() {
+		return unitOfDistance;
+	}
+	public void setUnitOfDistance(UnitOfDistance unitOfDistance) {
+		this.unitOfDistance = unitOfDistance;
+	}
+
+	public double getPrice_carryingCapacity() {
+		return price_carryingCapacity;
+	}
+	public void setPrice_carryingCapacity(double price_carryingCapacity) {
+		this.price_carryingCapacity = price_carryingCapacity;
+	}
 	public String getId() {
 		return id;
 	}
@@ -61,10 +104,10 @@ public class DeliveryMen implements Serializable{
 		this.lastName = lastName;
 	}
 	
-	public Point getPosition() {
+	public PointD getPosition() {
 		return position;
 	}
-	public void setPosition(Point position) {
+	public void setPosition(PointD position) {
 		this.position = position;
 	}
 	public String getCommunication_way() {

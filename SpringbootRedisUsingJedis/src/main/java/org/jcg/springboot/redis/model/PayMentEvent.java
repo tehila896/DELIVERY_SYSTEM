@@ -11,26 +11,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-@Data
+
 public class PayMentEvent implements Serializable{
-	@Valid
-	@JsonProperty
-	@NotNull(message = "paymentType can`t be null")
-	@Pattern(regexp="^[a-zA-Z ]+$", message = "paymentType must be a string")
+//	@Valid
+//	@JsonProperty
+////	@NotNull(message = "paymentType can`t be null")
+//	@Pattern(regexp="^[a-zA-Z ]+$", message = "paymentType must be a string")
 	String paymentType;
-	@Valid
-	@JsonProperty
-    BigDecimal value;
+//	@Valid
+//	@JsonProperty
+    Double value;
+
+	public PayMentEvent(String paymentType, Double value) {
+	super();
+	this.paymentType = paymentType;
+	this.value = value;
+}
 	public String getPaymentType() {
 		return paymentType;
 	}
 	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}
-	public BigDecimal getValue() {
+	public Double getValue() {
 		return value;
 	}
-	public void setValue(BigDecimal value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
+	
 }

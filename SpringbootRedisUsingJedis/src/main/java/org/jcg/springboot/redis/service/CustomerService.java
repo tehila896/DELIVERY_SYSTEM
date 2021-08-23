@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService implements CustomerRepo {
 
-	private final String CUSTOMER_CACHE = "CUSTOMERS";
+	private final String CUSTOMER_CACHE = "CUSTOMERR";
 
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;
