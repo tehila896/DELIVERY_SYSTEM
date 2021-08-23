@@ -30,10 +30,10 @@ import DelvierySystem.service.PackageService;
 import DelvierySystem.service.PriceFieldService;
 
 @RestController
-@RequestMapping(value = "/api/redis/deliveryMen")
+@RequestMapping(value = "/api/redis/DeliveryPerson")
 public class DeliveryMenController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DeliveryMenController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DeliveryPersonController.class);
 
 	@Autowired
 	DeliveryPersonService serviceDeliveryMen;
@@ -45,35 +45,35 @@ public class DeliveryMenController {
 	@Autowired
 	DistributedLock distributedLock;
 
-	// Save a new deliveryMen.
+	// Save a new DeliveryPerson.
 	// Url - http://localhost:10091/api/redis/add_deliveryMen
-	@PostMapping("/add_deliveryMen")
-	public ResponseEntity<String> save(@Valid @RequestBody final DeliveryPerson deliveryMen) {
+	@PostMapping("/add_DeliveryPerson")
+	public ResponseEntity<String> save(@Valid @RequestBody final DeliveryPerson DeliveryPerson) {
 		try {
-			DeliveryPerson temp = serviceDeliveryMen.findById(deliveryMen.getId());
+			DeliveryPerson temp = serviceDeliveryMen.findById(DeliveryPerson.getId());
 			if (temp.getId() == null)
 				return null;
 		} catch (Exception ex) {
-			Boolean result = serviceDeliveryMen.save(deliveryMen);
+			Boolean result = serviceDeliveryMen.save(DeliveryPerson);
 			;
 			if (result) {
-				LOG.info("Saving the new deliveryMen to the redis");
-				return ResponseEntity.ok("A new deliveryMen is saved!!!");
+				LOG.info("Saving the new DeliveryPerson to the redis");
+				return ResponseEntity.ok("A new DeliveryPerson is saved!!!");
 			} else
 				return ResponseEntity.ok("An error occured!!!");
 		}
-		return ResponseEntity.ok("The deliveryMen id is already in the database,you can update him!!!");
+		return ResponseEntity.ok("The DeliveryPerson id is already in the database,you can update him!!!");
 	}
 
-	// Update a new deliveryMen.
-	// Url - http://localhost:10091/api/redis/update_deliveryMen
-	@PutMapping("/update_deliveryMen")
+	// Update a new DeliveryPerson.
+	// Url - http://localhost:10091/api/redis/update_DeliveryPerson
+	@PutMapping("/update_DeliveryPerson")
 	public ResponseEntity<String> update(@Valid @RequestBody final DeliveryPerson deliveryMen) {
 		Boolean result = serviceDeliveryMen.save(deliveryMen);
 		if (result)
 		{
-			LOG.info("Update the deliveryMen to the redis");
-			return ResponseEntity.ok("deliveryMen is updated!!!");
+			LOG.info("Update the DeliveryPerson to the redis");
+			return ResponseEntity.ok("DeliveryPerson is updated!!!");
 		}
 		else
 			return ResponseEntity.ok("An error occured!!!");
@@ -81,9 +81,9 @@ public class DeliveryMenController {
 
 	// Update deliveryMen position.
 	// Url -
-	// http://localhost:10091/api/redis/updadate_Delverymen_Position/position_Y/{position_Y}/position_X/{position_X}/id/{id}
-	@PutMapping("/updadate_Delverymen_Position/position_Y/{position_Y}/position_X/{position_X}/id/{id}")
-	public ResponseEntity<String> updadate_Delverymen_Position(@PathVariable("id") String id,
+	// http://localhost:10091/api/redis/updadate_DeliveryPerson_Position/position_Y/{position_Y}/position_X/{position_X}/id/{id}
+	@PutMapping("/updadate_DeliveryPerson_Position/position_Y/{position_Y}/position_X/{position_X}/id/{id}")
+	public ResponseEntity<String> updadate_DeliveryPerson_Position(@PathVariable("id") String id,
 			@PathVariable("position_X") double position_X, @PathVariable("position_Y") double position_Y) {
 		try {
 			DeliveryPerson temp = serviceDeliveryMen.findById(id);

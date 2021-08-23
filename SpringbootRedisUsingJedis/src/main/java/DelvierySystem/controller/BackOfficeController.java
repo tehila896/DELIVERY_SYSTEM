@@ -68,29 +68,13 @@ public class BackOfficeController {
 		return ResponseEntity.ok("The priceField id is already in the database,you can update him!!!");
 	}
 
-	// Delete deliveryMen_ by id.
-	// Url -
-	// http://localhost:10091/api/redis/deliveryMen_/delete_deliveryMen/<deliveryMen_id>
-	@DeleteMapping("/delete_deliveryMen/{id}")
+	// Delete DeliveryPerson by id.
+	// Url -http://localhost:10091/api/redis/DeliveryPerson/delete_DeliveryPerson/<deliveryMen_id>
+	@DeleteMapping("/delete_DeliveryPerson/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") final String id) {
 		try {
-			DeliveryPerson deliveryMen = serviceDeliveryMen.findById(id);
-			serviceDeliveryMen.delete(deliveryMen.getId());
-			LOG.info("Deleting deliveryMen with id= " + id);
-			return ResponseEntity.ok("deliveryMen is deleted!!!");
-		} catch (Exception e) {
-			return ResponseEntity.ok("deliveryMen id not found!!!");
-		}
-	}
-
-	// Delete deliveryMen_ by id.
-	// Url -
-	// http://localhost:10091/api/redis/deliveryMen_/delete_deliveryMen/<deliveryMen_id>
-	@DeleteMapping("/delete_deliveryMenpackage/{id}")
-	public ResponseEntity<String> delpac(@PathVariable("id") final String id) {
-		try {
-			Package deliveryMen = servicePackage.findById(id);
-			servicePackage.delete(deliveryMen.getId());
+			DeliveryPerson DeliveryPerson = serviceDeliveryMen.findById(id);
+			serviceDeliveryMen.delete(DeliveryPerson.getId());
 			LOG.info("Deleting deliveryMen with id= " + id);
 			return ResponseEntity.ok("deliveryMen is deleted!!!");
 		} catch (Exception e) {
@@ -118,14 +102,14 @@ public class BackOfficeController {
 		return customerMap;
 	}
 
-	// Get all deliveryMens
-	// Url - http://localhost:10091/api/redis/backOffice/getall/deliveryMen
-	@GetMapping("/getall/deliveryMen")
-	public Map<String, DeliveryPerson> findAll_deliveryMens() {
-		LOG.info("Fetching all DeliveryMens from the redis.");
-		final Map<String, DeliveryPerson> deliveryMenMap = serviceDeliveryMen.findAll();
+	// Get all DeliveryPersons
+	// Url - http://localhost:10091/api/redis/backOffice/getall/DeliveryPerson
+	@GetMapping("/getall/DeliveryPerson")
+	public Map<String, DeliveryPerson> findAll_DeliveryPersons() {
+		LOG.info("Fetching all DeliveryPersons from the redis.");
+		final Map<String, DeliveryPerson> DeliveryPersonsMap = serviceDeliveryMen.findAll();
 		// Todo - If developers like they can sort the map (optional).
-		return deliveryMenMap;
+		return DeliveryPersonsMap;
 	}
 
 	// Get all packages
@@ -138,15 +122,15 @@ public class BackOfficeController {
 		return packageMenMap;
 	}
 
-	// Update deliveryMen state.
+	// Update DeliveryPerson lock.
 	// Url - http://localhost:10091/api/redis/realseLock/id/{id}
 	@PutMapping("/realseLock/id/{id}")
 	public ResponseEntity<String> realseLock(@Valid @PathVariable("id") String id) {
 		try {
 			DeliveryPerson temp = serviceDeliveryMen.findById(id);
 			distributedLock.releaseLock(id);
-	        LOG.info("deliveryMen "+temp.getId()+" is unLocked ");
-			return ResponseEntity.ok("delvieryMen " + temp.getFirstName() + " is unLocked");
+	        LOG.info("DeliveryPerson "+temp.getId()+" is unLocked ");
+			return ResponseEntity.ok("DeliveryPerson " + temp.getFirstName() + " is unLocked");
 		} catch (Exception ex) {
 			return ResponseEntity.ok("An error occured!!!");
 		}

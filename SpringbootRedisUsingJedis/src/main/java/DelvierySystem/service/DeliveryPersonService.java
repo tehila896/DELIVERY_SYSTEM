@@ -120,7 +120,7 @@ public class DeliveryPersonService implements DeliveryPersonRepo{
 		servicePackage.save(deliveryPackage);
 		PriceField row=servicePriceFieldService.findById(deliveryPackage.getUnitOfDistance());
         double column=row.getColumns().get(deliveryPackage.getCarryingCapacity());
-        //locked the delveryMen when it is not profitable for the company
+        //locked the DeliveryPerson when it is not profitable for the company
 		if(deliveryPackage.getPayment().getValue()>column)
 	    {
           boolean lock = distributedLock.getLock (deliveryMen.getId());	
