@@ -1,5 +1,6 @@
 package org.jcg.springboot.redis.service;
 
+
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import org.jcg.springboot.redis.dao.PriceFieldDao;

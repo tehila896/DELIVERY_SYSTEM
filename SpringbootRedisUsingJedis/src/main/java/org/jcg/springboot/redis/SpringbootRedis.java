@@ -1,4 +1,3 @@
-
 package org.jcg.springboot.redis;
 
 import org.slf4j.Logger;
@@ -24,6 +23,7 @@ public class SpringbootRedis {
 		SpringApplication.run(SpringbootRedis.class, args);
 		LOG.info("Springboot redis application is started successfully.");
 	}
+
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)			

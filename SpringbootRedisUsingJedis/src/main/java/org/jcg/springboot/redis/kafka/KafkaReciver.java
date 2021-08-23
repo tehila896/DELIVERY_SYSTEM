@@ -8,7 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaReciverPackageId {
+public class KafkaReciver {
 	
 	@Autowired
 	DeliveryMenService deliveryMenService;
@@ -16,7 +16,7 @@ public class KafkaReciverPackageId {
 	@Autowired
 	PackageService packageService;
 	
-	@KafkaListener(topics = "packageId_topicssQ", groupId = "packagesQ", concurrency = "2")
+	@KafkaListener(topics = "packageId_topic", groupId = "packages", concurrency = "4")
 	public void listenGroupFoo(String package_id) {
 		Package delveryPackage=packageService.findById(package_id);
 		deliveryMenService.calclute_Distance(delveryPackage);

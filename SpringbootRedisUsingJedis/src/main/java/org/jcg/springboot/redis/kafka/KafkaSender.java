@@ -5,15 +5,14 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaSenderPackageId {
+public class KafkaSender {
 	
 	@Autowired
 	private KafkaTemplate<String,String> kafkaTemplate;
 	
-	String kafkaTopic = "packageId_topicssQ";
+	String kafkaTopic = "packageId_topic";
 	
-	public void sendPackageId(String package_id) {
+	public void send(String package_id) {
 	    kafkaTemplate.send(kafkaTopic, package_id);
 	}
-
 }

@@ -1,10 +1,12 @@
 package org.jcg.springboot.redis.controller;
 
 import java.util.Map;
-import org.jcg.springboot.redis.model.Package;
-import org.jcg.springboot.redis.model.PriceField;
+
+import javax.validation.Valid;
 import org.jcg.springboot.redis.model.Customer;
 import org.jcg.springboot.redis.model.DeliveryMen;
+import org.jcg.springboot.redis.model.Package;
+import org.jcg.springboot.redis.model.PriceField;
 import org.jcg.springboot.redis.service.CustomerService;
 import org.jcg.springboot.redis.service.DeliveryMenService;
 import org.jcg.springboot.redis.service.DistributedLock;
@@ -22,7 +24,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/redis/backOffice")

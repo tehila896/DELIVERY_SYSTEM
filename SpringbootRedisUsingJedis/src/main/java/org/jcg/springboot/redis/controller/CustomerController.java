@@ -1,10 +1,9 @@
 package org.jcg.springboot.redis.controller;
 
-
 import javax.validation.Valid;
 import org.jcg.springboot.redis.model.Package;
 import org.jcg.springboot.redis.model.State;
-import org.jcg.springboot.redis.kafka.KafkaSenderPackageId;
+import org.jcg.springboot.redis.kafka.KafkaSender;
 import org.jcg.springboot.redis.model.Customer;
 import org.jcg.springboot.redis.service.CustomerService;
 import org.jcg.springboot.redis.service.PackageService;
@@ -34,7 +33,7 @@ public class CustomerController {
 	PackageService servicePackage;
 
 	@Autowired
-	KafkaSenderPackageId kafkaSender;
+	KafkaSender kafkaSender;
 
 	// Save a new customer.
 	// Url - http://localhost:10091/api/redis/add_customer
@@ -90,7 +89,7 @@ public class CustomerController {
 			;
 			if (result) {
 				LOG.info("Saving the new Package to the redis.");
-				kafkaSender.sendPackageId(deliveryPackage.getId());
+				kafkaSender.send(deliveryPackage.getId());
 				return ResponseEntity.ok("A new Package is saved!!!");
 			} else
 				return ResponseEntity.ok("An error occured!!!");
